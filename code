@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SubWay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+    <style type="text/css">
+      html,
+      body {
+        font-family: 'Inter', sans-serif;
+        ;
+        margin: 0;
+        padding: 0;
+        background-color: black;
+      }
+
+      .hamburger,
+      .closebtn {
+        position: absolute;
+        cursor: pointer;
+        margin: 20px;
+        color: white;
+        z-index: 10;
+        text-decoration: none;
+        line-height: 0;
+      }
+
+      .closebtn {
+        font-size: 30px;
+        color: #F2E3B3;
+      }
+
+      .hamburger {
+        font-size: 45px;
+        padding-top: 20px;
+        color: #F2E3B3;
+      }
+
+      
+      .wrapper {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+
+      }
+
+      video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+
+      }
+
+      input {
+        box-sizing: border-box;
+        border: #F2E3B3;
+        background: #F2E3B3;
+        border-radius: 18px;
+        letter-spacing: -0.01em;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        padding: 10px 15px;
+        width: 100%;
+
+      }
+
+      .nav-content {
+        padding: 40px 20px 30px 20px;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      .sidenav {
+        left: 0px;
+        top: 0px;
+        position: fixed;
+        box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 0px 0px 8px 8px;
+        z-index: 11;
+        background-color: #F28705;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 20px;
+        transition: 0.5s;
+        width: 0;
+      }
+
+      .nav-content a {
+        padding: 8px 0px 8px 5px;
+        text-decoration: none;
+        font-size: 16px;
+        color: #000000;
+        display: block;
+        transition: 0.3s;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        transition: 0.3s;
+      }
+
+      .nav-content a:hover {
+        color: #ffffff;
+      }
+
+
+
+      @media screen and (max-height: 450px) {
+        .sidenav {
+          padding-top: 15px;
+        }
+
+        .sidenav a {
+          font-size: 18px;
+        }
+      }
+
+      .bottom-banner {
+        visibility: hidden;
+        position: fixed;
+        width: 100%;
+        height: auto;
+        left: 0;
+        bottom: 0;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        border-radius: 20px;
+        background-color: #01402E;
+        margin-top: auto;
+        margin-bottom: 5px;
+
+        -webkit-transition: all 0.2s ease-in;
+        -moz-transition: all 0.2s ease-in;
+        -ms-transition: all 0.2s ease-in;
+        -o-transition: all 0.2s ease-in;
+        transition: all 0.2s ease-in;
+
+      }
+
+      .banner {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+      }
+      .banner--train {
+        margin-right: 10px;
+      }
+
+      .banner-top-content {
+        padding-top: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #F2E3B3;
+
+      }
+
+      .banner--train-time {
+        background-color: #F28705;
+        background: #F28705;
+        border-radius: 14px;
+        display: flex;
+        justify-content: left;
+        padding-top: 5px;
+        padding-left: 10px;
+        margin: 10px;
+      }
+
+      .banner--train.close {
+        margin-left: auto;
+        margin-right: 0;
+      }
+      .close-train-info-btn {
+        color: #F2E3B3;
+        font-size: 45px;
+        text-decoration: none;
+        line-height: 0;
+      }
+
+
+      .final-info-popup {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        border-radius: 20px;
+        background-color: #01402E;
+        margin top: auto;
+        margin bottom: 10px;
+
+
+      }
+
+      .button-content {
+        padding: 15px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="wrapper">
+      
+      <div class="hamburger-wrapper">
+        <span class="hamburger" onclick="openNav()">&#9776;</span>
+      </div>
+
+
+      <video width="1080" height="1920" autoplay loop muted>
+        <source src="videos/arthree.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <div class="nav-content">
+          <form onsubmit="event.preventDefault(); return(false);">
+            <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Where are you going?" />
+          </form>
+
+          <a href="#">Favorites</a>
+          <a href="#">Recent Destinations</a>
+          <a href="#">Log In</a>
+        </div>
+
+      </div>
+
+      <div class="bottom-banner">
+        
+        <div class="train-info-popup">
+          <div class="banner-top-content">
+            <div class="banner">
+              <div class="banner--train">
+                <img src="images/7.png" style="width: 2.2em; height: 2.2em;">
+              </div>
+              <div class="banner--train">
+                <img src="images/7train.png" style="width: 2.5em; height: 2.5em;">
+              </div>
+
+              <div class="banner--train">
+                <span>200 feet</span>
+              </div>
+              <div class ="banner--train">
+               <img src="images/vector.png" >
+             </div>
+               <div class="banner--train close">
+                <a href="javascript:void(0)" class="close-train-info-btn" onclick="closeOutEverything()">&times;</a>
+              </div>
+            </div>
+          </div>
+          <div class="banner--train-time">
+            <a href="#" class="flushing--btn">
+              <span class="flushing"><img src="images/flushing.png" style="width: 22em; "></span>
+            </a>
+          </div>
+          <div class="banner--train-time">
+            <span class="hudson"><img src="images/hudson.png" style="width: 22em; "></span>
+          </div>
+        </div>
+
+
+        <div class="final-info-popup">
+          <div class="button-content">
+            <span class= "button"><img src="images/flushingbanner.png" style="width: 23em;"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    </div>
+
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+
+      function myFunction() {
+        // Declare variables
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("mySearch");
+        filter = input.value.toUpperCase();
+        input.addEventListener("change", slideUp);
+
+       
+      }
+
+      //get height of the bottom bar
+      let bottom_banner = document.querySelector('.bottom-banner');
+      let height = bottom_banner.offsetHeight;
+      
+
+      function slideUp() {
+        let height = bottom_banner.offsetHeight;
+        bottom_banner.style.bottom = 0;
+        bottom_banner.style.visibility = 'visible';
+      }
+      function slideDown() {
+        bottom_banner.style.bottom = '-'+ 10 + height+'px';
+      }
+
+      slideDown();
+
+
+      let final_button = document.querySelector('.flushing--btn');
+      let final_info_popup = document.querySelector('.final-info-popup');
+
+
+      final_button.addEventListener("click", revealFinalPopup);
+
+      function revealFinalPopup() {
+        final_info_popup.style.display = 'block';
+        slideUp();
+      }
+
+      function closeOutEverything() {
+        final_info_popup.style.display = 'none';
+        let height = bottom_banner.offsetHeight;
+        slideDown();
+      }
+
+
+
+
+    </script>
+
+  </body>
+
+</html>
